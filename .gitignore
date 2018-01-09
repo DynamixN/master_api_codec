@@ -1,0 +1,7 @@
+/tests/_output
+/.idea
+/vendor
+/nbproject/
+/tests/_support/_generated
+php_errors.log
+composer.phar

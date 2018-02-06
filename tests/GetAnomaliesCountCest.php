@@ -19,7 +19,17 @@ class GetAnomaliesCountCest
         $I->sendGET(self::API_URL );
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
-//        $I->canSeeResponseMathesJsonType();
+        $I->canSeeResponseContainsJson([
+            'total' => '1'
+        ]);
+        $I->canSeeResponseMatchesJsonType([
+            'result' => [
+                'new' => 'integer',
+                'accepted' => 'integer',
+                'rejected' => 'integer',
+                'total' => 'integer'
+            ]
+        ]);
 
     }
 

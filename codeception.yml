@@ -14,6 +14,7 @@ paths:
     output: tests/_output
     data: tests/_data
     support: tests/_support
+    envs: _envs
 
 settings:
     shuffle: false

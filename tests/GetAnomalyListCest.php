@@ -20,7 +20,9 @@ class GetAnomalyListCest
         $I->sendGET(self::API_URL );
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
-//        $I->canSeeResponseMathesJsonType();
+        $I->canSeeResponseContainsJson([
+            'type' => '2'
+        ]);
 
     }
 }

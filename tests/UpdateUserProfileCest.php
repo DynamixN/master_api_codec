@@ -2,36 +2,30 @@
 /**
  * Created by PhpStorm.
  * User: user
- * Date: 1/4/18
- * Time: 4:35 PM
+ * Date: 1/26/18
+ * Time: 5:08 PM
  */
 
-class PostCreateUsersCest
+class UpdateUserProfileCest
 {
-
-//    const API_URL = 'users';
-
-
-    // tests
     public function tryToTest(ApiTester $I)
     {
         $I->amAuthorized();
         $I->haveHttpHeader("Accept", "application/json");
         $I->haveHttpHeader("X-Company-Id","1");
-        $I->sendPOST('users', [
+        $I->sendPOST('users/profile', [
             'X-Company-Id' => '1',
-            'username' => 'five',
+            'username' => 'three',
             'password' => '111111',
-            'email' => 'gb5@gmail.com',
+            'email' => 'gb3@gmail.com',
             'domain' => 'fit',
-            'first_name' => 'one',
-            'last_name' => 'one',
-            'display_name' => 'one',
+            'first_name' => 'three',
+            'last_name' => 'three',
+            'display_name' => 'three',
             'role_id' => '2'
         ]);
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
 
     }
-
 }

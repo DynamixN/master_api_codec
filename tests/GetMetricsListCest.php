@@ -2,13 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: user
- * Date: 12/19/17
- * Time: 4:23 PM
+ * Date: 1/25/18
+ * Time: 5:38 PM
  */
 
-class GetReportList3Cest
+class GetMetricsListCest
 {
-    const API_URL = 'reports';
+    const API_URL = 'metrics';
 
 
     // tests
@@ -16,12 +16,10 @@ class GetReportList3Cest
     {
         $I->amAuthorized();
         $I->haveHttpHeader("Accept", "application/json");
+        $I->haveHttpHeader("X-Company-Id","1");
         $I->sendGET(self::API_URL );
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
-        $I->canSeeResponseContainsJson([
-            'type' => '2'
-        ]);
 
     }
 }

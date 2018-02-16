@@ -5,6 +5,8 @@ paths:
     support: tests/_support
     envs: tests/_envs
 
+
 settings:
     shuffle: false
     lint: true
+    bootstrap: _bootstrap.php

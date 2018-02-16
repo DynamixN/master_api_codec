@@ -6,5 +6,8 @@ namespace Helper;
 
 class Api extends \Codeception\Module
 {
-
+    public function getCustomParam(): string
+    {
+        return $this->_getConfig("domain");
+    }
 }

@@ -19,21 +19,42 @@
 class ApiTester extends \Codeception\Actor
 {
     use _generated\ApiTesterActions;
+    use \Fixtures\FixturesTrait;
 
-    public function amAuthorized()
+    public function _amAuthorized(string $user, string $domain)
     {
         $this->haveHttpHeader("Accept", "application/json");
-        $this->sendPOST('users/login', ['username'=>'one@sceal.test.gbksoft.net', 'password' => '111111']);
+        $this->sendPOST('users/login', ['username'=>$user.'@'. $domain, 'password' => '111111']);
         $this->canSeeResponseCodeIs(200);
         $this->canSeeResponseIsJson();
         $this->amBearerAuthenticated($this->grabDataFromResponseByJsonPath('$.result.token')[0]);
     }
 
-    public function amCreateReport(): int{
+    public function amAuthorizedByUser()
+    {
+        $user = new \Fixtures\UserFixtures();
+
+        $this->_amAuthorized($user->get('user')['username'], $this->getCustomParam());
+    }
+    public function amAuthorizedByTwo()
+    {
+        $user = new \Fixtures\UserFixtures();
+
+        $this->_amAuthorized($user->get('two')['username'], $this->getCustomParam());
+    }
+
+    public function amAuthorizedByAdmin()
+    {
+        $user = new \Fixtures\UserFixtures();
+
+        $this->_amAuthorized($user->get('admin')['username'], $this->getCustomParam());
+    }
+
+    public function amCreateReport(string $name): int{
         $this->haveHttpHeader("Accept", "application/json");
         $this->sendPOST('reports', [
-            'name' => 'next333',
-            'due_date' => '1518426000',
+            'name' => "$name",
+            'due_date' => '1519722000',
             'frequency' => 'month'
         ]);
         return $this->grabDataFromResponseByJsonPath("$.result.id")[0];

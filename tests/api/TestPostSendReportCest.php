@@ -2,22 +2,25 @@
 /**
  * Created by PhpStorm.
  * User: user
- * Date: 1/22/18
- * Time: 6:03 PM
+ * Date: 2/16/18
+ * Time: 2:27 PM
  */
 
-class PostSendReportCest
+class TestPostSendReportCest
 {
+    const API_URL = 'reports';
+
     public function tryToTest(\ApiTester $I)
     {
-        $name = 'next_SEVEN';
+        $name = 'next_18';
+
 
         $I->amAuthorizedByUser();
         $id = $I->amCreateReport($name);
         $I->sendPOST("reports/{$id}/send", [
-     //     'id' => '',
+            //     'id' => '',
             'to' => [
-                ['email' => 'user2@test.com']
+                ['email' => 'gb2@gmail.com']
             ]
         ]);
 
@@ -31,6 +34,17 @@ class PostSendReportCest
                     "creator_id" => "integer"
                 ]]
             ]
+        ]);
+        $I->amAuthorizedByTwo();
+        $I->haveHttpHeader("Accept", "application/json");
+        $I->sendGET(self::API_URL );
+        $I->canSeeResponseCodeIs(200);
+        $I->canSeeResponseIsJson();
+        $I->canSeeResponseContainsJson([
+            'result' => [
+                'revision_id' => '2405'
+            ]
+
         ]);
     }
 }

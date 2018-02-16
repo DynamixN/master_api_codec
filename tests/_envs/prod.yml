@@ -1,6 +1,8 @@
 actor: ApiTester
 modules:
     enabled:
+        - \Helper\Api:
+            domain: "sceal.prod.gbksoft.net"
         - REST:
             url: http://sceal.prod.gbksoft.net/api/v1/
             depends: PhpBrowser

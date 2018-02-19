@@ -61,13 +61,13 @@ class ApiTester extends \Codeception\Actor
 //
     }
 
-    public function amCreateMetric(): int{
+    public function amCreateMetric(string $name_m): int{
         $this->haveHttpHeader("Accept", "application/json");
         $this->haveHttpHeader("X-Company-Id","1");
         $this->sendPOST('metrics', [
             'X-Company-Id' => '1',
             'type' => 'number',
-            'name' => 'brutto_1',
+            'name' => "$name_m",
             'is_additive' => '0',
             'is_positive' => '0',
             'is_complex' => '0',

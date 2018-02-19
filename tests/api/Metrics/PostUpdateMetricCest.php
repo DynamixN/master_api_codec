@@ -13,7 +13,7 @@ class PostUpdateMetricCest
         $interval = 2592000;
         $type = "number";
 
-        $I->amAuthorized();
+        $I->amAuthorizedByUser();
         $metricId = $I->amCreateMetric();
         $I->haveHttpHeader("Accept", "application/json");
         $I->haveHttpHeader("X-Company-Id","1");

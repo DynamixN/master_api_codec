@@ -10,11 +10,11 @@ class PostMetricSaveSettingCest
 {
     public function tryToTest(ApiTester $I)
     {
-        $interval = 2592000;
-        $type = "number";
+        $interval = 604800;
+        $name_m = "Stats";
 
         $I->amAuthorizedByUser();
-        $metricId = $I->amCreateMetric();
+        $metricId = $I->amCreateMetric($name_m);
         $I->haveHttpHeader("Accept", "application/json");
         $I->haveHttpHeader("X-Company-Id","1");
         $I->sendPOST("metrics/{$metricId}/settings/month", [
@@ -24,16 +24,19 @@ class PostMetricSaveSettingCest
             'focus_start' => '1493629200',
             'focus_end' => '1506762000',
             'interval' => $interval,
-            'chart_type' => '',
+            'chart_type' => '1',
+            'field0' => 'Null',
+            'field1' => 'Min',
+            'field2' => 'Max',
+            'field3' => 'Avg',
+            'field4' => 'Null',
+            'field5' => 'Null'
 
         ]);
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
         $I->canSeeResponseContainsJson([
             'interval' => $interval
-        ]);
-        $I->canSeeResponseMatchesJsonType([
-            "type" => "string:=$type"
         ]);
 
     }

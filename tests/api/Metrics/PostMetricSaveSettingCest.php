@@ -10,8 +10,8 @@ class PostMetricSaveSettingCest
 {
     public function tryToTest(ApiTester $I)
     {
-        $interval = 604800;
-        $name_m = "Stats";
+        $interval = 2592000;
+        $name_m = "Statss5";
 
         $I->amAuthorizedByUser();
         $metricId = $I->amCreateMetric($name_m);
@@ -19,18 +19,18 @@ class PostMetricSaveSettingCest
         $I->haveHttpHeader("X-Company-Id","1");
         $I->sendPOST("metrics/{$metricId}/settings/month", [
             'X-Company-Id' => '1',
-            'start' => '1493629200',
-            'end' => '1506762000',
-            'focus_start' => '1493629200',
-            'focus_end' => '1506762000',
+            'start' => '1486112400',
+            'end' => '1504947600',
+            'focus_start' => '1486112400',
+            'focus_end' => '1504947600',
             'interval' => $interval,
             'chart_type' => '1',
-            'field0' => 'Null',
-            'field1' => 'Min',
-            'field2' => 'Max',
-            'field3' => 'Avg',
-            'field4' => 'Null',
-            'field5' => 'Null'
+  //        'field0' => 'current',
+            'field1' => 'min',
+            'field2' => 'max',
+            'field3' => 'count',
+            'field4' => 'avg',
+            'field5' => null
 
         ]);
         $I->canSeeResponseCodeIs(200);

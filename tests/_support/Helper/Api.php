@@ -6,8 +6,16 @@ namespace Helper;
 
 class Api extends \Codeception\Module
 {
+    const ONE_MONTH = 2678400;
+    const ONE_DAY = 86400;
+
     public function getCustomParam(): string
     {
         return $this->_getConfig("domain");
     }
+    public static function getActualDate(int $period = 0)
+    {
+        return time() + $period;
+    }
 }
+

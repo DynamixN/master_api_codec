@@ -14,7 +14,7 @@ class GetMetricsListCest
     // tests
     public function tryToTest(ApiTester $I)
     {
-        $I->amAuthorized();
+        $I->amAuthorizedByUser();
         $I->haveHttpHeader("Accept", "application/json");
         $I->haveHttpHeader("X-Company-Id","1");
         $I->sendGET(self::API_URL );

@@ -11,13 +11,13 @@ class TestPostSaveMetricValueCest
     public function tryToTest(ApiTester $I)
     {
         $interval = 2592000;
-        $name_m = "Statss11";
+        $name_m = "Statss12";
 
         $I->amAuthorizedByUser();
         $metricId = $I->amCreateMetric($name_m);
         $I->haveHttpHeader("Accept", "application/json");
         $I->haveHttpHeader("X-Company-Id", "1");
-        $I->sendPOST("metrics/value", [
+        $I->sendPOST("metrics/values", [
             'X-Company-Id' => '1',
             'metrics' => [
                 [

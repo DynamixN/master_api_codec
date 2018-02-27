@@ -10,7 +10,7 @@ class DeleteReportsCest
 {
     public function tryToTest(\ApiTester $I)
     {
-        $I->amAuthorized();
+        $I->amAuthorizedByUser();
         $id = $I->amCreateReport();
         $I->sendDELETE("reports/{$id}");
         $I->canSeeResponseCodeIs(200);

@@ -8,13 +8,23 @@
 
 class DeleteReportsIdCest
 {
+    const API_URL = 'reports';
+
     public function tryToTest(\ApiTester $I)
     {
-        $I->amAuthorized();
-        $I->sendDELETE("reports/{id}", [
-            'id' => '[79,80,81]'
+
+        $I->amAuthorizedByUser();
+        $I->haveHttpHeader("Accept", "application/json");
+        $I->sendDELETE("reports/191", [
+ //           'id' => '[191]'
         ]);
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
+        $I->sendGET(self::API_URL );
+        $I->canSeeResponseCodeIs(200);
+        $I->canSeeResponseIsJson();
+        $I->dontSeeResponseContainsJson([
+            'id' => '[191]'
+        ]);
     }
 }

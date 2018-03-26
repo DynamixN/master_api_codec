@@ -2,23 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: user
- * Date: 3/2/18
- * Time: 6:34 PM
+ * Date: 3/16/18
+ * Time: 6:03 PM
  */
 
-class PostAddComponetsCest
+class PostAddPagesCest
 {
     public function tryToTest(\ApiTester $I)
     {
-        $name = 'next_SEVEN2';
+        $name = 'next_SEVa';
 
         $I->amAuthorizedByUser();
         $id = $I->amCreateReport($name);
-        $I->sendPOST("reports/{$id}/components", [
+        $I->sendPOST("reports/{$id}/pages", [
             //     'id' => '',
-            'to' => [
-                ['email' => 'user2@test.com']
-            ]
+            'section_id' => "",
+            'orientation' => "0"
         ]);
 
         $I->canSeeResponseCodeIs(200);

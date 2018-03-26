@@ -54,7 +54,7 @@ class ApiTester extends \Codeception\Actor
         $this->haveHttpHeader("Accept", "application/json");
         $this->sendPOST('reports', [
             'name' => "$name",
-            'due_date' => '1519722000',
+            'due_date' => '1523523600',
             'frequency' => 'month'
         ]);
         return $this->grabDataFromResponseByJsonPath("$.result.id")[0];

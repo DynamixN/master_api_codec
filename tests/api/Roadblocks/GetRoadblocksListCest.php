@@ -14,7 +14,7 @@ class GetRoadblocksListCest
     // tests
     public function tryToTest(ApiTester $I)
     {
-        $I->amAuthorized();
+        $I->amAuthorizedByUser();
         $I->haveHttpHeader("Accept", "application/json");
         $I->sendGET(self::API_URL );
         $I->canSeeResponseCodeIs(200);

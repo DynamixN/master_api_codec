@@ -15,7 +15,7 @@ class PostCreateReportsCest
         $I->amAuthorizedByUser();
         $I->haveHttpHeader("Accept", "application/json");
         $I->sendPOST('reports', [
-            'name' => 'Offday',
+            'name' => 'Gooday',
             'due_date' => '1519030800',
             'frequency' => 'month'
             //       'to' => '[79]'
@@ -23,7 +23,7 @@ class PostCreateReportsCest
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
         $I->canSeeResponseContainsJson([
-            'name' => 'Offday'
+            'name' => 'Gooday'
         ]);
         $I->canSeeResponseMatchesJsonType(['result' => [
             'id' => 'integer',

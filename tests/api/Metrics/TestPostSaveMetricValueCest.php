@@ -11,7 +11,7 @@ class TestPostSaveMetricValueCest
     public function tryToTest(ApiTester $I)
     {
         $interval = 2592000;
-        $name_m = "Statss12";
+        $name_m = "Session";
 
         $I->amAuthorizedByUser();
         $metricId = $I->amCreateMetric($name_m);

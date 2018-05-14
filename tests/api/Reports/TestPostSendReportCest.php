@@ -42,7 +42,7 @@ class TestPostSendReportCest
         $I->canSeeResponseIsJson();
         $I->canSeeResponseContainsJson([
             'result' => [
-                'revision_id' => '2405'
+                'revision_id' => 'generate from report'
             ]
 
         ]);

@@ -10,16 +10,20 @@ class PostAddCommentsCest
 {
     public function tryToTest(ApiTester $I)
     {
+        $name = 'liver';
+
         $I->amAuthorizedByUser();
+        $id = $I->amCreateReport($name);
         $I->haveHttpHeader("Accept", "application/json");
-        $I->sendPOST('/comments/report/385', [
-            'message' => 'Gooday'
+        $I->sendPOST("comments/report/{$id}", [
+            'message' => 'Gooday2'
         ]);
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
         $I->canSeeResponseContainsJson([
-            'message' => 'Gooday'
+            "result" => [
+                "message" => "Gooday2"
+            ]
         ]);
-
     }
 }

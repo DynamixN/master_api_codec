@@ -13,23 +13,17 @@ class PostAddPagesCest
         $name = 'next_SEVa';
 
         $I->amAuthorizedByUser();
-        $id = $I->amCreateReport($name);
-        $I->sendPOST("reports/{$id}/pages", [
-            //     'id' => '',
-            'section_id' => "",
-            'orientation' => "0"
+        //$id = $I->amCreateReport($name);
+        $I->sendPOST("reports/385/pages", [
+            'section_id' => "414",
+            'orientation' => "1"
         ]);
 
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
-        $I->canSeeResponseMatchesJsonType([
-            "result" => [
-                "sent_revisions" => [[
-                    "id" => "integer",
-                    "created_at" => "integer",
-                    "creator_id" => "integer"
-                ]]
-            ]
-        ]);
+        //$I->canSeeResponseMatchesJsonType([
+        //    "result" => [
+        //    ]
+        //]);
     }
 }

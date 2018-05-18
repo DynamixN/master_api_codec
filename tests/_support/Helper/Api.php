@@ -13,6 +13,7 @@ class Api extends \Codeception\Module
     {
         return $this->_getConfig("domain");
     }
+
     public static function getActualDate(int $period = 0)
     {
         return time() + $period;

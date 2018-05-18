@@ -13,9 +13,10 @@ class PostAddPagesCest
         $name = 'next_SEVa';
 
         $I->amAuthorizedByUser();
-        //$id = $I->amCreateReport($name);
-        $I->sendPOST("reports/385/pages", [
-            'section_id' => "414",
+        $id = $I->amCreateReport($name);
+        $sectionId = $I->amCreateSection($id);
+        $I->sendPOST("reports/{$id}/pages", [
+            'section_id' => "$sectionId",
             'orientation' => "1"
         ]);
 

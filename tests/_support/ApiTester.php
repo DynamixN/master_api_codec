@@ -77,4 +77,13 @@ class ApiTester extends \Codeception\Actor
         return $this->grabDataFromResponseByJsonPath("$.result.id")[0];
 //
     }
+
+    public function amCreateSection(int $reportId): int{
+        $this->haveHttpHeader("Accept", "application/json");
+        $this->sendPOST("reports/{$reportId}/sections");
+
+        return $this->grabDataFromResponseByJsonPath("$.result.id")[0];
+//
+    }
 }
+

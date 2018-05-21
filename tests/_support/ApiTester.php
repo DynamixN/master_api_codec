@@ -58,7 +58,7 @@ class ApiTester extends \Codeception\Actor
             'frequency' => 'month'
         ]);
         return $this->grabDataFromResponseByJsonPath("$.result.id")[0];
-//
+
     }
 
     public function amCreateMetric(string $name_m): int{
@@ -75,7 +75,7 @@ class ApiTester extends \Codeception\Actor
 
         ]);
         return $this->grabDataFromResponseByJsonPath("$.result.id")[0];
-//
+
     }
 
     public function amCreateSection(int $reportId): int{
@@ -83,7 +83,16 @@ class ApiTester extends \Codeception\Actor
         $this->sendPOST("reports/{$reportId}/sections");
 
         return $this->grabDataFromResponseByJsonPath("$.result.id")[0];
-//
+
     }
+
+    public function amCreatePage(int $sectionId): int{
+        $this->haveHttpHeader("Accept", "application/json");
+        $this->sendPOST("reports/{$sectionId}/");
+
+        return $this->grabDataFromResponseByJsonPath("$.result.id")[0];
+
+    }
+
 }
 

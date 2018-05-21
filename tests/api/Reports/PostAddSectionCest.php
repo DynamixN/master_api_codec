@@ -10,7 +10,7 @@ class PostAddSectionCest
 {
     public function tryToTest(\ApiTester $I)
     {
-        $name = 'next_SEVEN2';
+        $name = 'next_EVEN2';
 
         $I->amAuthorizedByUser();
         $id = $I->amCreateReport($name);
@@ -20,10 +20,10 @@ class PostAddSectionCest
 
         $I->canSeeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
-     //   $I->canSeeResponseMatchesJsonType([
-     //       "result" => [
-
-     //       ]
-     //   ]);
+        $I->canSeeResponseMatchesJsonType([
+            "result" => [
+                "report_section_id" => 'integer'
+                ]
+        ]);
     }
 }
